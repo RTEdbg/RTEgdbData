@@ -1,0 +1,3 @@
+#delay 10
+M24000004,4:00FFFFFF
+#delay 50
