@@ -214,6 +214,8 @@ For most debug probes only two channels are usually enabled for the GDB server. 
 See the description of **[Multiple Data Transfers in the Persistent Mode of Operation](#multiple-data-transfers-in-the-persistent-mode-of-operation)**. This is a partial workaround for debug probes where the processor stops execution when RTEgdbData connects to the GDB server. If the stop occurs, for example, immediately after the code has been loaded and started, the debugger can continue execution and the code will not be interrupted during individual data transfers.
 The RTEgdbData must be started before the non-interruptible functions are started. These are functions that, if interrupted, could cause damage to the control module or the device it controls.
 
+**Note:** See also the **[RTEcomLib](https://github.com/RTEdbg/RTEcomLib)** and **[RTEcomData](https://github.com/RTEdbg/RTEcomData)** repositories for transferring logged data via a serial channel. This library of functions and utilities enables data transfer even in cases where either the debug probe cannot be connected during testing or simultaneous transfer with RTEgdbData and use of the debugger in the IDE is not possible.
+
 Below is a list with a brief description of the problems. Workarounds are listed in the description of each debug probe.
 
 * **Segger J-Link**: No known issues regarding the GDBserver in combination with the RTEgdbData utility. The functionality of the Live Variable Viewer does not need to be turned off. The GDB server and debug probe behave as expected and the default setup is usually sufficient - e.g. the options "-nohalt -noir -noreset" if the GDB server should not stop the running system when the probe is connected or the GDB server is started.
