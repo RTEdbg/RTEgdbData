@@ -9,6 +9,7 @@
  * @author    B. Premzel
  */
 
+#define RTEGDBDATA_VERSION "v1.01"
 
 #define MIN_BUFFER_SIZE  (64U + 16U)    // Minimum buffer size for g_rtedbg circular buffer
 #define MAX_BUFFER_SIZE  2100000U       // Maximum buffer size for g_rtedbg circular buffer

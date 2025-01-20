@@ -244,6 +244,7 @@ static void show_help(void)
         "\n   'F' - Set new filter value."
         "\n   'S' - Switch to single shot mode and restart logging."
         "\n   'P' - Switch to post-mortem mode and restart logging."
+        "\n   'R' - Reconnect to the GDB server."
         "\n   '0' - Restart the batch file defined with the -start argument."
         "\n   '1' ... '9' - Start the command file 1.cmd ... 9.cmd. "
         "\n   'B' - Benchmark data transfer speed."
@@ -743,6 +744,30 @@ static void display_logging_state(clock_t* start_time)
 
 
 /***
+ * @brief Reconnect to the GDB server.
+ */
+
+static void reconnect_to_gdb_server(void)
+{
+    decrease_priorities();
+    gdb_socket_cleanup();
+
+    if (gdb_connect(parameters.gdb_port) != GDB_OK)
+    {
+        if (logging_to_file())
+        {
+            printf("\nCould not connect to the GDB server. Check the log file for details.\n");
+        }
+    }
+    else
+    {
+        increase_priorities();
+        printf("\nOK\n");
+    }
+}
+
+
+/***
  * @brief  Restart the file defined with the -start=command_file argument.
  */
 
@@ -818,6 +843,10 @@ static int persistent_connection(void)
 
         case 'L':
             disable_enable_logging_to_file();
+            break;
+
+        case 'R':
+            reconnect_to_gdb_server();
             break;
 
         case '0':

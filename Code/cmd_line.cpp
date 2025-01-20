@@ -37,10 +37,10 @@ static void check_parameters(void);
 static void show_help_and_exit(void)
 {
     printf(
-        "\n\nRTEgdbData (Build date: %s)"
+        "\n\nRTEgdbData %s (Build date: %s)"
         "\nTransfer g_rtedbg structure to the host using a GDB server."
-        "\n\nArguments: port_number address size <Options>"
         "\nSee the Readme.md file in the [https://github.com/RTEdbg/RTEgdbData] project for instructions.\n\n",
+        RTEGDBDATA_VERSION,
         __DATE__);
     exit(1);
 }
