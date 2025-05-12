@@ -4,6 +4,8 @@ The **RTEgdbData** utility transfers binary log data from embedded systems using
 
 The GDB server software is either part of the Debug Probe software or a separate package, as in the case of [OpenOCD](https://openocd.org/doc/html/GDB-and-OpenOCD.html). The IDE automatically starts the GDB server when we start debugging the code. The programmer can start the GDB server with custom settings and set the debugger in the IDE to use the already started GDB server. When testing without a debugger, the programmer must start the GDB server himself. Check your debug probe documentation to see how to do this. See **[TEST](https://github.com/RTEdbg/RTEgdbData/tree/master/TEST)** folder of the repository for examples of batch and GDB server configuration files. See the RTEgdb demo code for more examples.
 
+**Note:** The **RTEgdbData** utility is no longer supported. It is replaced by the **[RTEgetData](https://github.com/RTEdbg/RTEgetData)** utility, which allows communication through the COM port in addition to the GDB port.
+
 ## Table of contents
 * [Introduction](#Introduction)
 * [RTEgdbData Command Line Arguments](#rtegdbdata-command-line-arguments)
@@ -215,7 +217,7 @@ For most debug probes only two channels are usually enabled for the GDB server. 
 See the description of **[Multiple Data Transfers in the Persistent Mode of Operation](#multiple-data-transfers-in-the-persistent-mode-of-operation)**. This is a partial workaround for debug probes where the processor stops execution when RTEgdbData connects to the GDB server. If the stop occurs, for example, immediately after the code has been loaded and started, the debugger can continue execution and the code will not be interrupted during individual data transfers.
 The RTEgdbData must be started before the non-interruptible functions are started. These are functions that, if interrupted, could cause damage to the control module or the device it controls.
 
-**Note:** See also the **[RTEcomLib](https://github.com/RTEdbg/RTEcomLib)** and **[RTEcomData](https://github.com/RTEdbg/RTEcomData)** repositories for transferring logged data via a serial channel. This library of functions and utilities enables data transfer even in cases where either the debug probe cannot be connected during testing or simultaneous transfer with RTEgdbData and use of the debugger in the IDE is not possible.
+**Note:** See also the **[RTEcomLib](https://github.com/RTEdbg/RTEcomLib)** and **[RTEgetData](https://github.com/RTEdbg/RTEgetData)** repositories for transferring logged data via a serial channel. This library of functions and utilities enables data transfer even in cases where either the debug probe cannot be connected during testing or simultaneous transfer with RTEgdbData and use of the debugger in the IDE is not possible.
 
 Below is a list with a brief description of the problems. Workarounds are listed in the description of each debug probe.
 
